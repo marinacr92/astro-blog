@@ -1,0 +1,64 @@
+---
+import { Image } from 'astro:assets';
+import MainLayout from 'src/layouts/MainLayout.astro';
+
+import post05Img from '@images/post-05.png';
+import { Picture } from 'astro:assets';
+---
+
+<MainLayout title="Imágenes">
+  <h1 class="text-5xl text-white">Imágenes</h1>
+
+  <img
+    loading="eager"
+    src="/assets/images/post-05.png"
+    alt=""
+    width="250"
+    height="250"
+  />
+  <h1>Quality Low</h1>
+  <Image
+    quality="low"
+    src={post05Img}
+    alt="Imagen del post"
+    width="250"
+    height="250"
+  />
+
+  <h1>Quality High</h1>
+  <Image
+    quality="high"
+    src={post05Img}
+    alt="Imagen del post"
+    width="250"
+    height="250"
+  />
+
+  <h1>Otros formatos</h1>
+  <Image
+    format="jpeg"
+    src={post05Img}
+    alt="Imagen del post"
+    width="250"
+    height="250"
+  />
+
+  <h1>Otros formatos</h1>
+  <!-- los formats van en orden: si no soporta webp cogerá avif y si no soporta avif cogerá jpeg -->
+  <!-- formats={['webp', 'avif', 'jpeg']}  -->
+  <!-- widths={[240, 540, 720, post05Img.width]}
+    sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${post05Img.width}px`} -->
+  <Picture
+    src={post05Img}
+    alt="Imagen del post"
+    width={post05Img.width / 2}
+    densities={[1.5, 2]}
+  />
+</MainLayout>
+
+<style>
+  @reference "tailwindcss";
+  h1 {
+    @apply text-white mt-10;
+  }
+</style>
