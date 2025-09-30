@@ -14,5 +14,5 @@ export default defineConfig({
 
   integrations: [mdx(), solidJs()],
 
-  site: 'https://example.com'
+  site: 'https://marina-astro-blog.netlify.app'
 });
