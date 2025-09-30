@@ -1,4 +1,4 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection, reference, z } from "astro:content";
 
 const blogCollection = defineCollection({
     type: 'content',
@@ -7,17 +7,29 @@ const blogCollection = defineCollection({
         date: z.date(),
         description: z.string(),
         image: image(),
-        // cover: image(),
 
         // Relación 
-        author: z.string(),
+        author: reference('author'),
 
         // Relación
         tags: z.array(z.string())
     })
 })
 
+// La diferencia entre el "content" y la "data" es que la data no tiene estructura visual, es solo metadata. Podemos hacer relaciones entre colecciones, ya sean data o content
+
+const authorCollection = defineCollection({
+    type: "data",
+    schema: ({image}) => z.object({
+        name: z.string(),
+        avatar: image()
+    })
+})
+
 
 export const collections = {
-    blog: blogCollection
+    blog: blogCollection,
+    author: authorCollection
 }
+
+
