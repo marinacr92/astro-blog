@@ -12,7 +12,10 @@ const blogCollection = defineCollection({
         author: reference('author'),
 
         // Relación
-        tags: z.array(z.string())
+        tags: z.array(z.string()),
+
+        // Boolean
+        isDraft: z.boolean().default(false)
     })
 })
 
